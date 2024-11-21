@@ -1,135 +1,115 @@
-import java.util.ArrayList;
-public class Vehicle {
-    private String type;
-    private String color;
-    private double speed;
-    private boolean hasEngine;
-    private String engineType;
-    private double price;
-    private ArrayList<String> owners;
+import java.math.BigDecimal;
+
+import static java.math.BigDecimal.*;
+
+public class BankAccount {
+    private String AccountNumber;
+    private BigDecimal balance;
+    private String owner;
+    private String ContactNumber;
+    private String NameBank;
+    private String bonus;
+
 
     // Конструктор
-    public Vehicle(String type, String color, double speed, boolean hasEngine, String engineType, double price) {
-        this.type = type;
-        this.color = color;
-        this.speed = speed;
-        this.hasEngine = hasEngine;
-        this.engineType = engineType;
-        this.price = price;
-        this.owners = new ArrayList<>();
+    public BankAccount(String AccountNumber, BigDecimal balance, String owner, String ContactNumber, String NameBank, String bonus) {
+        this.AccountNumber = AccountNumber;
+        this.balance = balance;
+        this.owner = owner;
+        this.ContactNumber = ContactNumber;
+        this.NameBank = NameBank;
+        this.bonus = bonus;
     }
 
     // Геттры сеттры
-    public String getType() {
-        return type;
+    public String getAccountNumber() {
+        return AccountNumber;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public BigDecimal getBalance() {
+        return balance;
     }
 
-    public String getColor() {
-        return color;
+    public String getOwner() {
+        return owner;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public String getContactNumber() {
+        return ContactNumber;
     }
 
-    public double getSpeed() {
-        return speed;
+    public String getNameBank() {
+        return NameBank;
     }
 
-    public void setSpeed(double speed) {
-        this.speed = speed;
+    public String getBonus() {
+        return bonus;
     }
 
-    public boolean isHasEngine() {
-        return hasEngine;
+    public void setAccountNumber(String AccountNumber) {
+        this.AccountNumber = AccountNumber;
     }
 
-    public void setHasEngine(boolean hasEngine) {
-        this.hasEngine = hasEngine;
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
 
-    public String getEngineType() {
-        return engineType;
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
-    public void setEngineType(String engineType) {
-        this.engineType = engineType;
+    public void setContactNumber(String ContactNumber) {
+        this.ContactNumber = ContactNumber;
     }
 
-    public double getPrice() {
-        return price;
+    public void setNameBank(String NameBank) {
+        this.NameBank = NameBank;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setBonus(String bonus) {
+        this.bonus = bonus;
+    }
+	//Метод депозита
+    public void deposit(BigDecimal amount) {
+        balance = balance.add(amount);
+    }
+	//Метод снятия денег с счета
+    public void withdraw(BigDecimal amount) {
+        balance = balance.subtract(amount);
+    }
+	//Метод показа баланса
+    public BigDecimal showBalanse() {
+        return balance;
     }
 
-    public ArrayList<String> getOwners() {
-        return owners;
-    }
-
-    public void addOwner(String owner) {
-        owners.add(owner);
-    }
-
-    // метод для ускорения
-    public void accelerate(double acceleration) {
-        speed += acceleration;
-    }
-
-    // метод для замедления
-    public void decelerate(double deceleration) {
-        speed -= deceleration;
-        if (speed < 0) {
-            speed = 0;
-        }
-    }
-
-    // метод для расчета дистации
-    public double calculateDistance(double time) {
-        return speed * time;
-    }
-
-    // метод езды
-    public void gas() {
-        for (int i = 0; i < 10; i++) {
-            accelerate(1);
-            System.out.println("Speed: " + speed + " km/h");
-            try {
-                Thread.sleep(1000); // wait for 1 second
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public static void main(String[] args)
-    {
-        Vehicle BMW = new Vehicle ("Машина","Белая",150,true,"Электро -Двигатель",10000000);
-        BMW.addOwner("Анастасия");
-        System.out.println(BMW.toString());
-//        BMW.gas();
-        System.out.println("Километров пройдено " + BMW.calculateDistance(100000));
-        BMW.decelerate(2);
-        System.out.println(BMW.getSpeed());
 
 
 
-    }
 
-    public String toString() {
-        return "Транспорт{" +
-                "Тип='" + type + '\'' +
-                ", Цвет='" + color + '\'' +
-                ", скорость=" + speed +
-                ", Если ли двигатель=" + hasEngine +
-                ", Тип двигателя='" + engineType + '\'' +
-                ", Стоимость=" + price +
-                ", Владельцы=" + owners +
-                '}';
+
+    public static void main(String[] args) {
+
+BankAccount nastaya = new BankAccount("15478563214890", new BigDecimal("1448.2222222222"), "Настя", "254866952135", "ВТБ банк", "Кредиты с низкими процентами ");
+	//Проверяем баланс
+        System.out.println(nastaya.showBalanse());
+	//Ложим на счет 1000
+        nastaya.deposit(valueOf(1000.99));
+	//Проверяем баланс
+        System.out.println(nastaya.showBalanse());
+	//Снимаем с счета 1000
+        nastaya.withdraw(valueOf(1000.99));
+	//Проверяем баланс
+        System.out.println(nastaya.showBalanse());
+	//Создаем переменную для удобного отображения
+        BigDecimal n = nastaya.getBalance();
+	//Округление в большую сторону
+        System.out.println(n.setScale(3, BigDecimal.ROUND_CEILING));
+	//Отбрасование разрядов
+        System.out.println(n.setScale(3, BigDecimal.ROUND_DOWN));
+	//Округление в меньшию сторону
+        System.out.println(n.setScale(3, BigDecimal.ROUND_FLOOR));
+	//округление в большую сторону, если число после запятой >= .5
+        System.out.println(n.setScale(1, BigDecimal.ROUND_HALF_UP));
+
     }
 }
