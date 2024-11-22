@@ -3,27 +3,27 @@ import java.math.BigDecimal;
 import static java.math.BigDecimal.*;
 
 public class BankAccount {
-    private String AccountNumber;
+    private String accountNumber;
     private BigDecimal balance;
     private String owner;
-    private String ContactNumber;
-    private String NameBank;
+    private String contactNumber;
+    private String nameBank;
     private String bonus;
 
 
     // Конструктор
-    public BankAccount(String AccountNumber, BigDecimal balance, String owner, String ContactNumber, String NameBank, String bonus) {
-        this.AccountNumber = AccountNumber;
+    public BankAccount(String accountNumber, BigDecimal balance, String owner, String contactNumber, String nameBank, String bonus) {
+        this.accountNumber = accountNumber;
         this.balance = balance;
         this.owner = owner;
-        this.ContactNumber = ContactNumber;
-        this.NameBank = NameBank;
+        this.contactNumber = contactNumber;
+        this.nameBank = nameBank;
         this.bonus = bonus;
     }
 
     // Геттры сеттры
     public String getAccountNumber() {
-        return AccountNumber;
+        return accountNumber;
     }
 
     public BigDecimal getBalance() {
@@ -35,11 +35,11 @@ public class BankAccount {
     }
 
     public String getContactNumber() {
-        return ContactNumber;
+        return contactNumber;
     }
 
     public String getNameBank() {
-        return NameBank;
+        return nameBank;
     }
 
     public String getBonus() {
@@ -47,7 +47,7 @@ public class BankAccount {
     }
 
     public void setAccountNumber(String AccountNumber) {
-        this.AccountNumber = AccountNumber;
+        this.accountNumber = accountNumber;
     }
 
     public void setBalance(BigDecimal balance) {
@@ -59,11 +59,11 @@ public class BankAccount {
     }
 
     public void setContactNumber(String ContactNumber) {
-        this.ContactNumber = ContactNumber;
+        this.contactNumber = contactNumber;
     }
 
     public void setNameBank(String NameBank) {
-        this.NameBank = NameBank;
+        this.nameBank = nameBank;
     }
 
     public void setBonus(String bonus) {
